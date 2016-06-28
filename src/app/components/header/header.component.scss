@@ -3,3 +3,15 @@
 .menuItem, h1{
   color: $menuFontColor;
 }
+
+.row{
+  padding-top:2px;
+}
+.fa{
+  font-size: 35px;
+  border-bottom: 3px solid $headerBackground;
+}
+
+.fa:hover{
+  border-bottom: 3px solid $menuFontColor;
+}

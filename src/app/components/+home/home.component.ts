@@ -68,4 +68,8 @@ export class HomeComponent {
         console.log(e);
     }
 
+    public updateContent(){
+        this.doughnutChartData = [100, 450, 400];
+    }
+
 }

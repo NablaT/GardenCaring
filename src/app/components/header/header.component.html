@@ -1,9 +1,16 @@
 <div class="container">
-    <div class="titleApp">
-        <h1>GardenCaring</h1>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-3">
+            <a class="menuItem" [routerLink]="['Home']"><i class="fa fa-home" aria-hidden="true"></i></a></div>
+        <div class="col-lg-3 col-md-3 col-xs-3">
+            <a class="menuItem" [routerLink]="['About']"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-3">
+            <a class="menuItem" [routerLink]="['About']"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-3">
+            <a class="menuItem" [routerLink]="['Profile']"><i class="fa fa-user" aria-hidden="true"></i></a>
+        </div>
     </div>
-    <nav>
-        <a class="menuItem" [routerLink]="['Home']">Home</a>
-        <a class="menuItem" [routerLink]="['About']">About</a>
-    </nav>
+
 </div>
