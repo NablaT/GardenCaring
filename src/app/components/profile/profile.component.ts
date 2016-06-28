@@ -18,16 +18,17 @@ import {User} from "../../shared/models/user";
 
 export class ProfileComponent {
 
-    public accounts: Array<User>;
+    public accounts: Array<Account>;
 
     constructor(private accountService:AccountApi){
-        this.accounts= new Array<User>();
-        this.accounts.push(new User("-1","email", "p", "po"));
+        this.accounts= new Array<Account>();
+        //this.accounts= new Array<User>();
+        //this.accounts.push(new User("-1","email", "p", "po"));
     }
 
     ngOnInit(){
         this.accountService.listAccount().subscribe(
-            account=>this.accounts=account[0]
+            account=>this.accounts=account
         );
     }
 }
