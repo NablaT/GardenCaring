@@ -3,6 +3,8 @@ import {NotificationApi, AccountApi, LandApi} from "../../shared/services/src/no
 import {Notification, Account, Plot} from "../../shared/services/src/notif/model/models";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
+import {ManageDataService} from "../../shared/services/src/manage-data.service";
+import {Metric} from "../../shared/models/metric";
 
 @Component({
     selector: 'home',
@@ -11,11 +13,15 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
     styleUrls: ['./home.component.css'],
     providers:[NotificationApi,
         AccountApi,
-        LandApi
+        LandApi,
+        ManageDataService
     ],
     directives: [CHART_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class HomeComponent {
+    
+    public data:Metric[];
+
     public pathImage:string;
     public notifications: Array<Notification>;
 
@@ -43,7 +49,10 @@ export class HomeComponent {
 
 
     constructor(private notificationService:NotificationApi,
-                private accountService:AccountApi, private landService:LandApi){
+                private accountService:AccountApi,
+                private landService:LandApi,
+                private manageMetricService:ManageDataService
+    ){
         this.pathImage="../../../../assets/home/picture.png";
     }
 
@@ -56,6 +65,9 @@ export class HomeComponent {
         );
         this.landService.findPlots().subscribe(
             plots=>this.plots=plots
+        );
+        this.manageMetricService.getData().then(
+            data => this.data=data
         );
     }
 
