@@ -30,7 +30,9 @@ export const NPM_DEPENDENCIES = [
     {src: 'node_modules/tether-1.3.1/dist/js/tether.js', inject: 'libs'},
     {src: 'node_modules/jquery/dist/jquery.js', inject: 'libs'},
 
-    {src: 'node_modules/systemjs/dist/system.src.js', inject: 'libs'}
+    {src: 'node_modules/systemjs/dist/system.src.js', inject: 'libs'},
+
+    {src: 'node_modules/chart.js/dist/Chart.bundle.min.js', inject: 'libs'}
 ];
 
 const PROJECT_DEPENDENCIES = [

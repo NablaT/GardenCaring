@@ -1,3 +1,14 @@
 <div class="container">
-    <h1>Hey, I'm Home !</h1>
+
+    <div class="row">
+        <base-chart class="chart"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></base-chart>
+
+    </div>
 </div>
