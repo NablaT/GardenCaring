@@ -17,9 +17,9 @@ function getNpmDependencies () {
 
 gulp.task('bundles.libs.prod', () => {
     return gulp.src(getNpmDependencies())
-               .pipe(plugins.uglify({
-                   mangle: false
-               }))
-               .pipe(plugins.concat(JS_PROD_LIBS_BUNDLE))
-               .pipe(gulp.dest(JS_PROD_DIR));
+        .pipe(plugins.uglify({
+            mangle: false
+        }))
+        .pipe(plugins.concat(JS_PROD_LIBS_BUNDLE))
+        .pipe(gulp.dest(JS_PROD_DIR));
 });

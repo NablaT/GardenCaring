@@ -37,12 +37,11 @@ export const JS_NPM_DEPENDENCIES = [
 ];
 
 export const CSS_NPM_DEPENDENCIES = [
-    {src: path.join(STYLES_SRC, 'main.css'), inject: 'project'},
-    {src: path.join(SRC_DIR, 'systemjs.config.js'), inject: 'project'}
+    {src: 'node_modules/font-awesome/css/font-awesome.min.css', inject: 'libs'}
 
 ];
 
-const NPM_DEPENDENCIES = JS_NPM_DEPENDENCIES.concat(CSS_NPM_DEPENDENCIES);
+export const NPM_DEPENDENCIES = JS_NPM_DEPENDENCIES.concat(CSS_NPM_DEPENDENCIES);
 
 const PROJECT_DEPENDENCIES = [
     {src: path.join(STYLES_SRC, 'main.css'), inject: 'project'},
