@@ -10,11 +10,4 @@ export class Account {
     password:string;
 
     getRev:string;
-
-    /*constructor(id:string, email:string, password:string, getRev:string){
-     this.id=id;
-     this.email=email;
-     this.password=password;
-     this.getRev=getRev;
-     }*/
 }
