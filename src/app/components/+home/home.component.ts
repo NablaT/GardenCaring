@@ -143,7 +143,6 @@ export class HomeComponent {
         let values=[];
         let yNames=[];
         for(var i=0;i<data.length;i++){
-            console.log("data[i]: "+data[i].temperature);
             values.push(data[i].temperature);
             yNames.push('');
         }
@@ -155,7 +154,6 @@ export class HomeComponent {
         let values=[];
         let yNames=[];
         for(var i=0;i<data.length;i++){
-            console.log("data[i]: "+data[i].temperature);
             values.push(data[i].light);
             yNames.push('');
         }
@@ -167,7 +165,6 @@ export class HomeComponent {
         let values=[];
         let yNames=[];
         for(var i=0;i<data.length;i++){
-            console.log("data[i]: "+data[i].temperature);
             values.push(data[i].humidity);
             yNames.push('');
         }
