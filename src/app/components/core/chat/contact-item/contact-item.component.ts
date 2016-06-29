@@ -3,9 +3,7 @@
  */
 
 import {Component, Output, Input, EventEmitter} from '@angular/core';
-import {ContactModel} from "../../../models/contact-model/contact.model";
-import {MessageModel} from "../../../models/message-model/message.model";
-import {ManageChatService} from "../../../../shared/services/src/manage-chat.service";
+import {Notification} from "../../../../shared/models/Notification";
 
 @Component({
     selector: 'contact-item',
@@ -16,35 +14,14 @@ import {ManageChatService} from "../../../../shared/services/src/manage-chat.ser
 export class ContactItemComponent {
 
     @Input('id') id:string;
-    private contact:ContactModel;
-    private lastMessage:MessageModel;
+    @Input('content') content:string;
+    @Input('seen') seen:string;
+    @Input('pathImage') pathImage:string;
+    private notification:Notification;
+    private lastMessage:Notification;
 
-    @Output() sendContact= new EventEmitter<ContactModel>();
-
-    constructor(private _manageChatService: ManageChatService){
-        this.contact=new ContactModel("","","","","");
-        this.lastMessage= new MessageModel("","","","");
-    }
+    @Output() sendContact= new EventEmitter<Notification>();
 
 
-    ngOnInit() {
-        this.getContactFromID();
-    }
-
-
-    getContactFromID(){
-        this._manageChatService.getContact(this.id).then(
-            contact => { this.contact=contact}
-        );
-        this._manageChatService.getLastMessage(this.id).then(
-            lastMessage =>  this.lastMessage=lastMessage
-        );
-    }
-
-
-    emitContact(){
-        this.sendContact.emit(new ContactModel("1", this.contact.firstName,
-            this.contact.lastName, this.contact.lastMessage,""));
-    }
 
 }
