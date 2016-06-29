@@ -17,10 +17,15 @@
   width: 90%;
   color:white;
 }
-.loading{
+.loading, .plotName,.fa-arrow-circle-left{
   text-align: center;
   color:$otherFontColor;
 }
+
+.description{
+  margin-top:3px;
+}
+
 
 .fa-circle-o-notch {
   -animation: spin .7s infinite linear;

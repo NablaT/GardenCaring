@@ -1,5 +1,17 @@
 <div class="container">
 
+    <div class="row description">
+        <div class="col-xs-2">
+            <h4><i class="fa fa-arrow-circle-left" aria-hidden="true"
+                   (click)="closeComponentAfterClick()"
+            ></i>
+            </h4>
+        </div>
+        <div class="col-xs-8 plotName">
+            <h4>{{plotName}}</h4>
+        </div>
+    </div>
+
     <div class="row buttonRow">
         <div class="col-xs-4">
             <button type="button" class="btn btn-success" (click)="lastDay()">Last Day</button>

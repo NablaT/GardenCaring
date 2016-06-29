@@ -5,6 +5,7 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {LandApi} from "../../shared/services/src/land-api.service";
 import {Plot} from "../../shared/models/Plot";
 import {PlotItemComponent} from "./plot-item/plot-item.component";
+import {HomeComponent} from "../+home/home.component";
 
 @Component({
     selector: 'about',
@@ -12,7 +13,7 @@ import {PlotItemComponent} from "./plot-item/plot-item.component";
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.css'],
     providers: [LandApi],
-    directives: [PlotItemComponent]
+    directives: [PlotItemComponent, HomeComponent]
 })
 export class AboutComponent {
 
@@ -21,9 +22,15 @@ export class AboutComponent {
     public doughnutChartType:string = 'doughnut';
 
     public plots:Array<Plot>;
+    public currentSensorSerial:string;
+    public currentPlotName:string;
+
+    public showGraph:boolean;
 
     constructor(private landService:LandApi) {
         this.plots=[];
+        this.currentSensorSerial="";
+        this.showGraph=false;
     }
 
     ngOnInit(){
@@ -32,6 +39,13 @@ export class AboutComponent {
         );
     }
 
+    public showGraphFromPlot(currPlot:Plot){
+        console.log("into show graph, plot: name: "+currPlot.name);
+        console.log("plot: sensorSerial: "+currPlot.sensorSerial);
+        this.currentSensorSerial=currPlot.sensorSerial;
+        this.currentPlotName=currPlot.name;
+        this.showGraph=true;
+    }
     // events
     public chartClicked(e:any):void {
 
@@ -39,5 +53,9 @@ export class AboutComponent {
 
     public chartHovered(e:any):void {
         console.log(e);
+    }
+
+    public closeComponent(needToBeClose:boolean){
+        this.showGraph=false;
     }
 }

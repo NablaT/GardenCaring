@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component,EventEmitter,Output, Input} from "@angular/core";
 import {NotificationApi, AccountApi, LandApi} from "../../shared/services/src/index";
 import {Notification, Account, Plot} from "../../shared/models/index";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -20,6 +20,11 @@ import {Metric} from "../../shared/models/metric";
 })
 export class HomeComponent {
 
+    @Input('id') sensorSerial:string;
+    @Input('name') plotName:string;
+
+    @Output() closeComponent=new EventEmitter<boolean>();
+
     public data:Metric[];
     public loading:boolean;
 
@@ -31,7 +36,7 @@ export class HomeComponent {
     public plots:Array<Plot>;
     ///////////////////////////////////////////// HUMIDITY/////////////////////////////////////////////
     public lineChartData:Array<any> = [
-        {data: [28, 48, 40, 19, 86, 27, 90], label: 'Humidity'}
+        {data: [0, 0, 0, 0, 0, 0, 0], label: 'Humidity'}
     ];
     public lineChartLabels:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptions:any = {
@@ -57,7 +62,7 @@ export class HomeComponent {
     ///////////////////////////////////////////// LIGHT/////////////////////////////////////////////
 
     public lineChartDataL:Array<any> = [
-        {data: [28, 48, 40, 19, 86, 19, 86], label: 'Light'}
+        {data: [0, 0, 0, 0, 0, 0, 0], label: 'Light'}
     ];
     public lineChartLabelsL:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptionsL:any = {
@@ -82,7 +87,7 @@ export class HomeComponent {
     ///////////////////////////////////////////// Temperature /////////////////////////////////////////////
 
     public lineChartDataT:Array<any> = [
-        {data: [28, 48, 40, 19, 86, 27, 90], label: 'Temperature'}
+        {data: [0, 0, 0, 0, 0, 0, 0], label: 'Temperature'}
     ];
     public lineChartLabelsT:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptionsT:any = {
@@ -118,19 +123,21 @@ export class HomeComponent {
 
         this.loading=true;
         this.pathImage = "../../../../assets/home/picture.png";
+        this.plotName="";
     }
 
     ngOnInit() {
-        this.notificationService.listAccount().subscribe(
+        /*this.notificationService.listAccount().subscribe(
             notifications=>this.notifications = notifications
         );
+
         this.accountService.listAccount().subscribe(
             account=>this.accounts = account
         );
         this.landService.findPlots().subscribe(
             plots=>this.plots = plots
-        );
-        this.manageMetricService.getData().then(
+        );*/
+        this.manageMetricService.getDataFromId(this.sensorSerial).then(
             data => this.changeCharts(data,100)
         );
     }
@@ -217,6 +224,10 @@ export class HomeComponent {
 
     public updateContent() {
         this.doughnutChartData = [100, 450, 400];
+    }
+
+    public closeComponentAfterClick(){
+        this.closeComponent.emit(true);
     }
 
 }

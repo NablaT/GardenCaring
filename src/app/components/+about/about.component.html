@@ -1,13 +1,24 @@
 <div class="container">
 
-
-    <div *ngFor="let plot of plots">
-        <plot-item
-                id="{{plot.id}}"
-                name="{{plot.name}}"
-                tenantId="{{plot.tenantId}}"
-                culture="{{plot.culture}}"
-                adviceLevel="{{plot.adviceLevel}}"
-        ></plot-item>
+    <div *ngIf="showGraph==false">
+        <div *ngFor="let plot of plots">
+            <plot-item
+                    id="{{plot.id}}"
+                    name="{{plot.name}}"
+                    tenantId="{{plot.tenantId}}"
+                    culture="{{plot.culture}}"
+                    adviceLevel="{{plot.adviceLevel}}"
+                    (click)="showGraphFromPlot(plot)"
+            ></plot-item>
+        </div>
     </div>
+
+    <div *ngIf="showGraph==true">
+        <home
+                id="{{currentSensorSerial}}"
+                name="{{currentPlotName}}"
+                (closeComponent)="closeComponent($event)"
+        ></home>
+    </div>
+
 </div>
