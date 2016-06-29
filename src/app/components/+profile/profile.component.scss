@@ -5,6 +5,7 @@ $workColor: #f39c12;
 $facebookColor: #3B5998;
 $twitterColor: #33ccff;
 $linkBackground: #b0b7bf;
+$black: #000;
 
 figure {
 
@@ -14,6 +15,10 @@ figure {
   width: 100%;
   color: $menuFontColor;
   text-align: center;
+  background-color: $colorButton;
+  border-radius: 5px;
+  border: solid 10px $menuFontColor;
+  box-shadow: 0 0 10px transparentize($black, .8);
 
   .profile {
     border-radius: 50%;
