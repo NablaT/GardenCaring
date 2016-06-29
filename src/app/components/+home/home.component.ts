@@ -185,7 +185,6 @@ export class HomeComponent {
     }
 
     public lastDay(){
-        console.log("yes");
         this.loading=true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, 10)
@@ -193,7 +192,6 @@ export class HomeComponent {
     }
 
     public lastWeek(){
-        console.log("week");
         this.loading=true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, 40)
@@ -201,7 +199,6 @@ export class HomeComponent {
     }
 
     public lastMonth(){
-        console.log("month");
         this.loading=true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, data.length)
