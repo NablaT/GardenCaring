@@ -18,6 +18,7 @@ export class PlotItemComponent {
     @Input('tenantId') tenantId:string;
     @Input('culture') culture:string;
     @Input('adviceLevel') adviceLevel:string;
+    @Input('pathImage') pathImage:string;
 
     constructor(){
         this.id="";
@@ -25,5 +26,6 @@ export class PlotItemComponent {
         this.tenantId="";
         this.culture="";
         this.adviceLevel="";
+        this.pathImage="";
     }
 }

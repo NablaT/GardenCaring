@@ -10,6 +10,8 @@ export class Plot {
 
     sensorSerial:string;
 
+    imageUrl:string;
+
     adviceLevel:number;
 
     getRev:string;
