@@ -17,11 +17,11 @@
 </div>
 
 <div *ngIf="showNotification==true" @flyInOut="'in'">
-    <button (click)="showNotifList()"> getback</button>
     <card
-            path=""
+            path="{{pathCardImage}}"
             content="Here the notif title"
             description="Here the notif description"
+            (click)="showNotifList()"
 
     ></card>
 </div>

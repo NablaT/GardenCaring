@@ -55,6 +55,7 @@ export class ContactListComponent {
     private notifications:Array<Notification>;
     private showNotification:boolean;
     private pathImage:string;
+    private pathCardImage:string;
 
 
     @Output() sendContact= new EventEmitter<Notification>();
@@ -63,6 +64,7 @@ export class ContactListComponent {
         this.showNotification=false;
         this.notifications=[];
         this.pathImage="../../../../../assets/notification/logo2.png";
+        this.pathCardImage="../../../../../assets/card/potager.png";
         //this.contactList=[new ContactModelComponent("-1", "Pierre", "Marcousi", "Je te dirai ça demain")];
     }
 
