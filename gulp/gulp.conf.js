@@ -41,7 +41,7 @@ export const CSS_NPM_DEPENDENCIES = [
 
 ];
 
-export const NPM_DEPENDENCIES = JS_NPM_DEPENDENCIES.concat(CSS_NPM_DEPENDENCIES);
+const NPM_DEPENDENCIES = JS_NPM_DEPENDENCIES.concat(CSS_NPM_DEPENDENCIES);
 
 const PROJECT_DEPENDENCIES = [
     {src: path.join(STYLES_SRC, 'main.css'), inject: 'project'},
