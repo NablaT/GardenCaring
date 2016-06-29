@@ -22,11 +22,20 @@
  * limitations under the License.
  */
 
-import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@angular/http';
-import {Injectable, Optional} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import * as models from '../model/models';
-import 'rxjs/Rx';
+import {
+    Http,
+    Headers,
+    RequestOptionsArgs,
+    Response,
+    URLSearchParams
+} from "@angular/http";
+import {
+    Injectable,
+    Optional
+} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {Plot} from "../../models/index";
+import "rxjs/Rx";
 
 /* tslint:disable:no-unused-variable member-ordering */
 
@@ -34,10 +43,10 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class LandApi {
-    protected basePath = 'http://gardencaring-services.eu-gb.mybluemix.net/rest';
-    public defaultHeaders : Headers = new Headers();
+    protected basePath            = 'http://gardencaring-services.eu-gb.mybluemix.net/rest';
+    public defaultHeaders:Headers = new Headers();
 
-    constructor(protected http: Http, @Optional() basePath: string) {
+    constructor(protected http:Http, @Optional() basePath:string) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -45,27 +54,27 @@ export class LandApi {
 
     /**
      * Create a plot.
-     * 
+     *
      * @param body Plot to create
      */
-    public createPlot (body: models.Plot, extraHttpRequestParams?: any ) : Observable<models.Plot> {
+    public createPlot(body:Plot, extraHttpRequestParams?:any):Observable<Plot> {
         const path = this.basePath + '/land/plot';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'body' is set
         if (!body) {
             throw new Error('Missing required parameter body when calling createPlot');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'POST',
             headers: headerParams,
             search: queryParameters
         };
-        requestOptions.body = JSON.stringify(body);
+        requestOptions.body                   = JSON.stringify(body);
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -76,27 +85,27 @@ export class LandApi {
 
     /**
      * Find plot using an id.
-     * 
+     *
      * @param plotid plotid
      */
-    public findPlotById (plotid: string, extraHttpRequestParams?: any ) : Observable<models.Plot> {
+    public findPlotById(plotid:string, extraHttpRequestParams?:any):Observable<Plot> {
         const path = this.basePath + '/land/plot/{plotid}'
-            .replace('{' + 'plotid' + '}', String(plotid));
+                .replace('{' + 'plotid' + '}', String(plotid));
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'plotid' is set
         if (!plotid) {
             throw new Error('Missing required parameter plotid when calling findPlotById');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -107,26 +116,26 @@ export class LandApi {
 
     /**
      * List plots
-     * 
+     *
      * @param tenantid tenantid
      */
-    public findPlots (tenantid?: string, extraHttpRequestParams?: any ) : Observable<Array<models.Plot>> {
+    public findPlots(tenantid?:string, extraHttpRequestParams?:any):Observable<Array<Plot>> {
         const path = this.basePath + '/land/plot';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         if (tenantid !== undefined) {
             queryParameters.set('tenantid', tenantid);
         }
 
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -137,27 +146,27 @@ export class LandApi {
 
     /**
      * Update a plot.
-     * 
+     *
      * @param body Plot to update
      */
-    public updatePlot (body: models.Plot, extraHttpRequestParams?: any ) : Observable<models.Plot> {
+    public updatePlot(body:Plot, extraHttpRequestParams?:any):Observable<Plot> {
         const path = this.basePath + '/land/plot';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'body' is set
         if (!body) {
             throw new Error('Missing required parameter body when calling updatePlot');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'PUT',
             headers: headerParams,
             search: queryParameters
         };
-        requestOptions.body = JSON.stringify(body);
+        requestOptions.body                   = JSON.stringify(body);
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
