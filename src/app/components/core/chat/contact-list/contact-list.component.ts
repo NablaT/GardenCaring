@@ -36,16 +36,6 @@ import {CardComponent} from "../../card/card.component";
                         opacity: 1
                     }))
                 ])
-            ]),
-            transition('* => void', [
-                group([
-                    animate('0.3s ease', style({
-                        transform: 'translateX(50px)'
-                    })),
-                    animate('0.3s 0.2s ease', style({
-                        opacity: 0
-                    }))
-                ])
             ])
         ])
     ]
