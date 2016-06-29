@@ -32,7 +32,7 @@ export class HomeComponent {
     public lineChartData:Array<any> = [
         {data: [28, 48, 40, 19, 86, 27, 90], label: 'Humidity'}
     ];
-    public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    public lineChartLabels:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptions:any = {
         animation: false,
         responsive: true
@@ -58,7 +58,7 @@ export class HomeComponent {
     public lineChartDataL:Array<any> = [
         {data: [28, 48, 40, 19, 86, 19, 86], label: 'Light'}
     ];
-    public lineChartLabelsL:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    public lineChartLabelsL:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptionsL:any = {
         animation: false,
         responsive: true
@@ -83,7 +83,7 @@ export class HomeComponent {
     public lineChartDataT:Array<any> = [
         {data: [28, 48, 40, 19, 86, 27, 90], label: 'Temperature'}
     ];
-    public lineChartLabelsT:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    public lineChartLabelsT:Array<any> = ['', '', '', '', '', '', ''];
     public lineChartOptionsT:any = {
         animation: false,
         responsive: true
@@ -128,8 +128,51 @@ export class HomeComponent {
             plots=>this.plots = plots
         );
         this.manageMetricService.getData().then(
-            data => this.data = data
+            data => this.changeCharts(data)
         );
+    }
+
+    public changeCharts(data){
+        this.data = data;
+        this.extractTemperature(data);
+        this.extractLight(data);
+        this.extractHumidity(data);
+    }
+
+    public extractTemperature(data){
+        let values=[];
+        let yNames=[];
+        for(var i=0;i<data.length;i++){
+            console.log("data[i]: "+data[i].temperature);
+            values.push(data[i].temperature);
+            yNames.push('');
+        }
+        this.lineChartDataT=[{data: values, label: 'Temperature'}];
+        this.lineChartLabelsT=yNames;
+    }
+
+    public extractLight(data){
+        let values=[];
+        let yNames=[];
+        for(var i=0;i<data.length;i++){
+            console.log("data[i]: "+data[i].temperature);
+            values.push(data[i].light);
+            yNames.push('');
+        }
+        this.lineChartDataL=[{data: values, label: 'Light'}];
+        this.lineChartLabelsL=yNames;
+    }
+
+    public extractHumidity(data){
+        let values=[];
+        let yNames=[];
+        for(var i=0;i<data.length;i++){
+            console.log("data[i]: "+data[i].temperature);
+            values.push(data[i].humidity);
+            yNames.push('');
+        }
+        this.lineChartData=[{data: values, label: 'Humidity'}];
+        this.lineChartLabels=yNames;
     }
 
     // events
