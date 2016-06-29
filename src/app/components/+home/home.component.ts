@@ -28,6 +28,10 @@ export class HomeComponent {
     public day:number;
     public week:number;
     public month:number;
+    
+    public lastTemperature:number;
+    public lastHumidity:number;
+    public lastLight:number;
 
     public data:Metric[];
     public loading:boolean;
@@ -131,6 +135,9 @@ export class HomeComponent {
         this.day=40;
         this.week=80;
         this.month=150;
+        this.lastHumidity=0;
+        this.lastLight=0;
+        this.lastTemperature=0;
     }
 
     ngOnInit() {
@@ -167,9 +174,10 @@ export class HomeComponent {
             values.push(data[i].temperature);
             yNames.push('');
         }
-        this.lineChartDataT=[{data: values, label: 'Temperature'}];
+        this.lineChartDataT=[{data: values, label: 'Temperature | Last value: '+data[data.length-1].temperature}];
         this.lineChartLabelsT=yNames;
-
+        console.log("timestamp: "+data[data.length-1].timestamp);
+        this.lastTemperature=data[data.length-1].temperature;
         this.loading=false;
     }
 
@@ -181,8 +189,9 @@ export class HomeComponent {
             values.push(data[i].light);
             yNames.push('');
         }
-        this.lineChartDataL=[{data: values, label: 'Light'}];
+        this.lineChartDataL=[{data: values, label: 'Light | Last value: '+data[data.length-1].light}];
         this.lineChartLabelsL=yNames;
+        this.lastLight=data[data.length-1].light;
         this.loading=false;
     }
 
@@ -193,8 +202,9 @@ export class HomeComponent {
             values.push(data[i].humidity);
             yNames.push('');
         }
-        this.lineChartData=[{data: values, label: 'Humidity'}];
+        this.lineChartData=[{data: values, label: 'Humidity | Last value: '+data[data.length-1].humidity}];
         this.lineChartLabels=yNames;
+        this.lastHumidity=data[data.length-1].humidity;
         this.loading=false;
     }
 

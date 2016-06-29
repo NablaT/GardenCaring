@@ -1,16 +1,20 @@
 <div class="container">
 
     <div *ngIf="showGraph==false">
-        <div *ngFor="let plot of plots">
-            <plot-item
-                    id="{{plot.id}}"
-                    name="{{plot.name}}"
-                    tenantId="{{plot.tenantId}}"
-                    culture="{{plot.culture}}"
-                    adviceLevel="{{plot.adviceLevel}}"
-                    pathImage="{{plot.imageUrl}}"
-                    (click)="showGraphFromPlot(plot)"
-            ></plot-item>
+        <div class="row">
+            <div *ngFor="let plot of plots">
+                <div class="col-xs-6 col-xl-6 col-sm-6 col-lg-6">
+                    <plot-item
+                            id="{{plot.id}}"
+                            name="{{plot.name}}"
+                            tenantId="{{plot.tenantId}}"
+                            culture="{{plot.culture}}"
+                            adviceLevel="{{plot.adviceLevel}}"
+                            pathImage="{{plot.imageUrl}}"
+                            (click)="showGraphFromPlot(plot)"
+                    ></plot-item>
+                </div>
+            </div>
         </div>
     </div>
 
