@@ -21,6 +21,7 @@ import {Metric} from "../../shared/models/metric";
 export class HomeComponent {
 
     public data:Metric[];
+    public loading:boolean;
 
     public pathImage:string;
     public notifications:Array<Notification>;
@@ -114,6 +115,8 @@ export class HomeComponent {
                 private accountService:AccountApi,
                 private landService:LandApi,
                 private manageMetricService:ManageDataService) {
+
+        this.loading=true;
         this.pathImage = "../../../../assets/home/picture.png";
     }
 
@@ -128,60 +131,81 @@ export class HomeComponent {
             plots=>this.plots = plots
         );
         this.manageMetricService.getData().then(
-            data => this.changeCharts(data)
+            data => this.changeCharts(data,100)
         );
     }
 
-    public changeCharts(data){
+    public changeCharts(data, dataSet:number){
         this.data = data;
-        this.extractTemperature(data);
-        this.extractLight(data);
-        this.extractHumidity(data);
+
+        if(dataSet>data.length){
+            dataSet=data.length;
+        }
+        this.extractTemperature(data, dataSet);
+        this.extractLight(data, dataSet);
+        this.extractHumidity(data, dataSet);
     }
 
-    public extractTemperature(data){
+    public extractTemperature(data, dataSet:number){
         let values=[];
         let yNames=[];
-        for(var i=0;i<data.length;i++){
+        for(var i=(data.length-dataSet);i<data.length;i++){
             values.push(data[i].temperature);
             yNames.push('');
         }
         this.lineChartDataT=[{data: values, label: 'Temperature'}];
         this.lineChartLabelsT=yNames;
+
+        this.loading=false;
     }
 
-    public extractLight(data){
+    public extractLight(data, dataSet:number){
         let values=[];
         let yNames=[];
-        for(var i=0;i<data.length;i++){
+        let start=(data.length-dataSet);
+        for(var i=(data.length-dataSet);i<data.length;i++){
             values.push(data[i].light);
             yNames.push('');
         }
         this.lineChartDataL=[{data: values, label: 'Light'}];
         this.lineChartLabelsL=yNames;
+        this.loading=false;
     }
 
-    public extractHumidity(data){
+    public extractHumidity(data, dataSet:number){
         let values=[];
         let yNames=[];
-        for(var i=0;i<data.length;i++){
+        for(var i=(data.length-dataSet);i<data.length;i++){
             values.push(data[i].humidity);
             yNames.push('');
         }
         this.lineChartData=[{data: values, label: 'Humidity'}];
         this.lineChartLabels=yNames;
+        this.loading=false;
     }
 
     public lastDay(){
         console.log("yes");
+        this.loading=true;
+        this.manageMetricService.getData().then(
+            data => this.changeCharts(data, 10)
+        );
     }
 
     public lastWeek(){
         console.log("week");
+        this.loading=true;
+        this.manageMetricService.getData().then(
+            data => this.changeCharts(data, 40)
+        );
     }
 
     public lastMonth(){
         console.log("month");
+        this.loading=true;
+        this.manageMetricService.getData().then(
+            data => this.changeCharts(data, data.length)
+        );
 
     }
 

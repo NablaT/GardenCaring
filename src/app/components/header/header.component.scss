@@ -10,8 +10,10 @@
 }
 .fa{
   font-size: 35px;
-  border-bottom: 3px solid $headerBackground;
+  border-bottom: 3px solid $colorButton;
 }
+
+
 
 .fa:hover{
   border-bottom: 3px solid $menuFontColor;

@@ -1,14 +1,33 @@
 @import '../../../styles/variables';
 
-.buttonRow{
-
-  margin-left:10px;
-}
-.btn{
-  font-size:10px;
+.buttonRow {
+  margin-top: 8px;
+  margin-left: 10px;
 }
 
-.chart{
-  width:90%;
-  margin-left:10px;
+.btn {
+  font-size: 10px;
+  background-color: $colorButton;
 }
+.btn:hover {
+   background-color: $colorButtonHover;
+  border-color:$colorButtonHover
+ }
+
+.chart {
+  width: 90%;
+  margin-left: 10px;
+}
+.loading{
+  text-align: center;
+}
+.fa-circle-o-notch {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+

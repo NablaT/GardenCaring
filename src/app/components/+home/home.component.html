@@ -1,5 +1,5 @@
 <div class="container">
-    <br/>
+
     <div class="row buttonRow">
         <div class="col-xs-4">
             <button type="button" class="btn btn-success" (click)="lastDay()">Last Day</button>
@@ -9,6 +9,14 @@
         </div>
         <div class="col-xs-4">
             <button type="button" class="btn btn-success" (click)="lastMonth()">Last Month</button>
+        </div>
+    </div>
+
+    <div *ngIf="loading==true">
+        <div class="row">
+            <div class="col-xs-12 loading">
+                <i class="fa fa-circle-o-notch" aria-hidden="true"></i> Loading charts...
+            </div>
         </div>
     </div>
 
