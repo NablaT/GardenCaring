@@ -1,9 +1,12 @@
 import {Component} from "@angular/core";
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {HeaderComponent} from './components/header/index';
-import {AboutComponent} from './components/+about/index';
-import {HomeComponent} from './components/+home/index';
-import {ProfileComponent} from "./components/profile/profile.component";
+import {
+    RouteConfig,
+    ROUTER_DIRECTIVES
+} from "@angular/router-deprecated";
+import {HeaderComponent} from "./components/header/index";
+import {AboutComponent} from "./components/+about/index";
+import {HomeComponent} from "./components/+home/index";
+import {ProfileComponent} from "./components/+profile/index";
 
 @Component({
     selector: 'app',
