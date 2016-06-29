@@ -4,6 +4,7 @@ import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {LandApi} from "../../shared/services/src/land-api.service";
 import {Plot} from "../../shared/models/Plot";
+import {PlotItemComponent} from "./plot-item/plot-item.component";
 
 @Component({
     selector: 'about',
@@ -11,7 +12,7 @@ import {Plot} from "../../shared/models/Plot";
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.css'],
     providers: [LandApi],
-    directives: [CHART_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES]
+    directives: [PlotItemComponent]
 })
 export class AboutComponent {
 

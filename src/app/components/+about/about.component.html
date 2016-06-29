@@ -1,15 +1,13 @@
 <div class="container">
-    <div class="row">
-        <base-chart class="chart"
-                    [data]="doughnutChartData"
-                    [labels]="doughnutChartLabels"
-                    [chartType]="doughnutChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></base-chart>
-    </div>
+
 
     <div *ngFor="let plot of plots">
-        {{plot.culture}}
-        {{plot.name}}
+        <plot-item
+                id="{{plot.id}}"
+                name="{{plot.name}}"
+                tenantId="{{plot.tenantId}}"
+                culture="{{plot.culture}}"
+                adviceLevel="{{plot.adviceLevel}}"
+        ></plot-item>
     </div>
 </div>
