@@ -7,6 +7,7 @@ import {HeaderComponent} from "./components/header/index";
 import {AboutComponent} from "./components/+about/index";
 import {HomeComponent} from "./components/+home/index";
 import {ProfileComponent} from "./components/+profile/index";
+import {NotificationComponent} from "./components/+notification/notification.component";
 
 @Component({
     selector: 'app',
@@ -21,7 +22,8 @@ import {ProfileComponent} from "./components/+profile/index";
 @RouteConfig([
     {path: '/', name: 'Home', component: HomeComponent},
     {path: '/about', name: 'About', component: AboutComponent},
-    {path: '/profile', name: 'Profile', component: ProfileComponent}
+    {path: '/profile', name: 'Profile', component: ProfileComponent},
+    {path: '/notification', name: 'Notification', component: NotificationComponent}
 ])
 export class AppComponent {
 }

@@ -1,0 +1,10 @@
+<ul class="contacts">
+    <li *ngFor="let contact of contactList" class="contact"
+        (click)="emitContact(contact)">
+        <contact-item
+                id="{{contact.id}}"
+
+        >
+        </contact-item>
+    </li>
+</ul>

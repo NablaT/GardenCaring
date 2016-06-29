@@ -1,0 +1,44 @@
+@import "../../../../../styles/variables";
+
+.contacts {
+  margin-left: -1px;
+  padding-left: 0px;
+  border-right: 1px solid $light;
+  border-left: 1px solid $light;
+  list-style-type: none;
+  @include calc(width, '100% + 2px');
+  .contact {
+    position: relative;
+    width: 100%;
+    padding: 12px 10% 16px;
+    cursor: pointer;
+    background-color: $white;
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      display: block;
+      width: 80%;
+      height: 1px;
+      content: '';
+      background-color: $light;
+      transform: translate(-50%, 0);
+    }
+    &:hover {
+      margin-top: -1px;
+      margin-left: -1px;
+      padding-top: 13px;
+      border: 0;
+      background-color: $blue;
+      @include calc(width, '100% + 2px');
+      @include calc(padding-left, '10% + 1px');
+      /deep/ span {
+        color: $white;
+        background: transparent;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

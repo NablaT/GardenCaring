@@ -9,3 +9,27 @@ $enable-flex : true;
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
 $fa-font-path : '../../node_modules/font-awesome/fonts';
+
+
+html { //#505D6E
+  background: rgb(234, 235, 237) no-repeat center center fixed;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.5em;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #fff;
+  color: rgba(255, 255, 255, .8);
+  font-weight: normal;
+}
+
