@@ -1,13 +1,15 @@
 <ul class="contacts">
     <li *ngFor="let notification of notifications" class="contact"
-        (click)="emitContact(notification)">
-        <contact-item
-                id="{{notification.id}}"
-                content="{{notification.content}}"
-                seen="{{notification.seen}}"
-                pathImage="{{pathImage}}"
+        (click)="emitContact(notification)"  @flyInOut="'in'">
+        <div class="row">
+            <contact-item
+                    id="{{notification.id}}"
+                    content="{{notification.content}}"
+                    seen="{{notification.seen}}"
+                    pathImage="{{pathImage}}"
 
-        >
-        </contact-item>
+            >
+            </contact-item>
+        </div>
     </li>
 </ul>

@@ -2,7 +2,13 @@
  * Component ChatContactListComponent
  */
 
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter,
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    group} from '@angular/core';
 import {ContactItemComponent} from "../contact-item/contact-item.component";
 import {NotificationApi} from "../../../../shared/services/src/notification-api.service";
 import {Notification} from "../../../../shared/models/Notification";
@@ -13,7 +19,33 @@ import {Notification} from "../../../../shared/models/Notification";
     templateUrl: 'contact-list.component.html',
     styleUrls : ['./contact-list.component.css'],
     directives: [ContactItemComponent],
-    providers: [NotificationApi]
+    providers: [NotificationApi],
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({ transform: 'translateX(0)', opacity: 1})),
+            transition('void => *', [
+                style({transform: 'translateX(50px)', opacity: 0}),
+                group([
+                    animate('0.3s 0.1s ease', style({
+                        transform: 'translateX(0)'
+                    })),
+                    animate('0.3s ease', style({
+                        opacity: 1
+                    }))
+                ])
+            ]),
+            transition('* => void', [
+                group([
+                    animate('0.3s ease', style({
+                        transform: 'translateX(50px)'
+                    })),
+                    animate('0.3s 0.2s ease', style({
+                        opacity: 0
+                    }))
+                ])
+            ])
+        ])
+    ]
 })
 export class ContactListComponent {
 
