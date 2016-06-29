@@ -9,8 +9,9 @@ import {Metric} from "../../models/metric";
 @Injectable()
 export class ManageDataService {
 
+    //private _serverLink ='http://gardenhubconnector-2.eu-gb.mybluemix.net/databyserial?serial=AE0X1234&from=1467133196277&metric=temperature';
+    private _serverLink ='http://gardencaring-services.eu-gb.mybluemix.net/rest/data?form=1467133789089?serial=AE0X1234';
 
-    private _serverLink ='http://gardenhubconnector-2.eu-gb.mybluemix.net/databyserial?serial=AE0X1234&from=1467133196277&metric=temperature';
     private extensionLink: string[];
 
     /**

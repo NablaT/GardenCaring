@@ -2,22 +2,50 @@
 
     <div class="row">
         <base-chart class="chart"
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColours"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></base-chart>
 
     </div>
 
     <div class="row">
-    <base-chart class="chart"
-                [data]="doughnutChartData"
-                [labels]="doughnutChartLabels"
-                [chartType]="doughnutChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></base-chart>
+        <base-chart class="chart"
+                    [datasets]="lineChartDataL"
+                    [labels]="lineChartLabelsL"
+                    [options]="lineChartOptionsL"
+                    [colors]="lineChartColoursL"
+                    [legend]="lineChartLegendL"
+                    [chartType]="lineChartTypeL"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></base-chart>
+
+    </div>
+
+    <div class="row">
+        <base-chart class="chart"
+                    [datasets]="lineChartDataT"
+                    [labels]="lineChartLabelsT"
+                    [options]="lineChartOptionsT"
+                    [colors]="lineChartColoursT"
+                    [legend]="lineChartLegendT"
+                    [chartType]="lineChartTypeT"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></base-chart>
+
+    </div>
+
+
+    <div class="row">
+        <base-chart class="chart"
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></base-chart>
     </div>
 </div>
