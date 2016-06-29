@@ -1,4 +1,4 @@
-import {Component,EventEmitter,Output, Input} from "@angular/core";
+import {Component, EventEmitter, Output, Input} from "@angular/core";
 import {NotificationApi, AccountApi, LandApi} from "../../shared/services/src/index";
 import {Notification, Account, Plot} from "../../shared/models/index";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -23,12 +23,12 @@ export class HomeComponent {
     @Input('id') sensorSerial:string;
     @Input('name') plotName:string;
 
-    @Output() closeComponent=new EventEmitter<boolean>();
+    @Output() closeComponent = new EventEmitter<boolean>();
 
     public day:number;
     public week:number;
     public month:number;
-    
+
     public lastTemperature:number;
     public lastHumidity:number;
     public lastLight:number;
@@ -118,132 +118,118 @@ export class HomeComponent {
     public lineChartTypeT:string = 'line';
 
 
-    ///////////////////////////////////////////// DOUGHNUT/////////////////////////////////////////////
-    public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-    public doughnutChartData:number[] = [350, 450, 100];
-    public doughnutChartType:string = 'doughnut';
-
-
     constructor(private notificationService:NotificationApi,
                 private accountService:AccountApi,
                 private landService:LandApi,
                 private manageMetricService:ManageDataService) {
 
-        this.loading=true;
+        this.loading = true;
         this.pathImage = "../../../../assets/home/picture.png";
-        this.plotName="";
-        this.day=40;
-        this.week=80;
-        this.month=150;
-        this.lastHumidity=0;
-        this.lastLight=0;
-        this.lastTemperature=0;
+        this.plotName = "";
+        this.day = 40;
+        this.week = 80;
+        this.month = 150;
+        this.lastHumidity = 0;
+        this.lastLight = 0;
+        this.lastTemperature = 0;
     }
 
     ngOnInit() {
-        /*this.notificationService.listAccount().subscribe(
-            notifications=>this.notifications = notifications
-        );
-
-        this.accountService.listAccount().subscribe(
-            account=>this.accounts = account
-        );
-        this.landService.findPlots().subscribe(
-            plots=>this.plots = plots
-        );*/
         this.manageMetricService.getDataFromId(this.sensorSerial).then(
-            data => this.changeCharts(data,this.day)
+            data => this.changeCharts(data, this.day)
         );
     }
 
-    public changeCharts(data, dataSet:number){
+    public changeCharts(data, dataSet:number) {
         this.data = data;
 
-        if(dataSet>data.length){
-            dataSet=data.length;
+        if (dataSet > data.length) {
+            dataSet = data.length;
         }
         this.extractTemperature(data, dataSet);
         this.extractLight(data, dataSet);
         this.extractHumidity(data, dataSet);
     }
 
-    public extractTemperature(data, dataSet:number){
-        let values=[];
-        let yNames=[];
-        for(var i=(data.length-dataSet);i<data.length;i++){
+    public extractTemperature(data, dataSet:number) {
+        let values = [];
+        let yNames = [];
+        let modulo = Math.floor(dataSet/4);
+
+        for (var i = (data.length - dataSet); i < data.length; i++) {
             values.push(data[i].temperature);
-            yNames.push('');
+            if (i % modulo == 0) {
+
+                let date = new Date(data[i].timestamp * 1000);
+                let hour = date.getHours() + ":" + date.getMinutes();
+
+                yNames.push(hour)
+            }
+            else {
+                yNames.push('');
+            }
         }
-        this.lineChartDataT=[{data: values, label: 'Temperature | Last value: '+data[data.length-1].temperature}];
-        this.lineChartLabelsT=yNames;
-        console.log("timestamp: "+data[data.length-1].timestamp);
-        this.lastTemperature=data[data.length-1].temperature;
-        this.loading=false;
+        this.lineChartDataT = [{data: values, label: 'Temperature | Last value: ' + data[data.length - 1].temperature}];
+        this.lineChartLabelsT = yNames;
+        console.log("line chart: "+this.lineChartLabelsT);
+        console.log("line chart length: "+this.lineChartLabelsT.length+" data length:"+values.length);
+        console.log("timestamp: " + data[data.length - 1].timestamp);
+        this.lastTemperature = data[data.length - 1].temperature;
+        this.loading = false;
     }
 
-    public extractLight(data, dataSet:number){
-        let values=[];
-        let yNames=[];
-        let start=(data.length-dataSet);
-        for(var i=(data.length-dataSet);i<data.length;i++){
+    public extractLight(data, dataSet:number) {
+        let values = [];
+        let yNames = [];
+        let start = (data.length - dataSet);
+        for (var i = (data.length - dataSet); i < data.length; i++) {
             values.push(data[i].light);
             yNames.push('');
+
         }
-        this.lineChartDataL=[{data: values, label: 'Light | Last value: '+data[data.length-1].light}];
-        this.lineChartLabelsL=yNames;
-        this.lastLight=data[data.length-1].light;
-        this.loading=false;
+        this.lineChartDataL = [{data: values, label: 'Light | Last value: ' + data[data.length - 1].light}];
+        this.lineChartLabelsL = yNames;
+        this.lastLight = data[data.length - 1].light;
+        this.loading = false;
     }
 
-    public extractHumidity(data, dataSet:number){
-        let values=[];
-        let yNames=[];
-        for(var i=(data.length-dataSet);i<data.length;i++){
+    public extractHumidity(data, dataSet:number) {
+        let values = [];
+        let yNames = [];
+        for (var i = (data.length - dataSet); i < data.length; i++) {
             values.push(data[i].humidity);
             yNames.push('');
         }
-        this.lineChartData=[{data: values, label: 'Humidity | Last value: '+data[data.length-1].humidity}];
-        this.lineChartLabels=yNames;
-        this.lastHumidity=data[data.length-1].humidity;
-        this.loading=false;
+        this.lineChartData = [{data: values, label: 'Humidity | Last value: ' + data[data.length - 1].humidity}];
+        this.lineChartLabels = yNames;
+        this.lastHumidity = data[data.length - 1].humidity;
+        this.loading = false;
     }
 
-    public lastDay(){
-        this.loading=true;
+    public lastDay() {
+        this.loading = true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, this.day)
         );
     }
 
-    public lastWeek(){
-        this.loading=true;
+    public lastWeek() {
+        this.loading = true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, this.week)
         );
     }
 
-    public lastMonth(){
-        this.loading=true;
+    public lastMonth() {
+        this.loading = true;
         this.manageMetricService.getData().then(
             data => this.changeCharts(data, this.month)
         );
 
     }
 
-    // events
-    public chartClicked(e:any):void {
-        //console.log(e);
-    }
 
-    public chartHovered(e:any):void {
-        //console.log(e);
-    }
-
-    public updateContent() {
-        this.doughnutChartData = [100, 450, 400];
-    }
-
-    public closeComponentAfterClick(){
+    public closeComponentAfterClick() {
         this.closeComponent.emit(true);
     }
 

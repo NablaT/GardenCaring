@@ -28,4 +28,5 @@ export class PlotItemComponent {
         this.adviceLevel="";
         this.pathImage="";
     }
+    
 }
