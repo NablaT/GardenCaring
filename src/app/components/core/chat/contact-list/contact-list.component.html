@@ -1,15 +1,27 @@
-<ul class="contacts">
-    <li *ngFor="let notification of notifications" class="contact"
-        (click)="emitContact(notification)"  @flyInOut="'in'">
-        <div class="row">
-            <contact-item
-                    id="{{notification.id}}"
-                    content="{{notification.content}}"
-                    seen="{{notification.seen}}"
-                    pathImage="{{pathImage}}"
+<div *ngIf="showNotification==false">
+    <ul class="contacts">
+        <li *ngFor="let notification of notifications" class="contact"
+            (click)="emitContact(notification)" @flyInOut="'in'">
+            <div class="row">
+                <contact-item
+                        id="{{notification.id}}"
+                        content="{{notification.content}}"
+                        seen="{{notification.seen}}"
+                        pathImage="{{pathImage}}"
 
-            >
-            </contact-item>
-        </div>
-    </li>
-</ul>
+                >
+                </contact-item>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="showNotification==true" @flyInOut="'in'">
+    <button (click)="showNotifList()"> getback</button>
+    <card
+            path=""
+            content="Here the notif title"
+            description="Here the notif description"
+
+    ></card>
+</div>

@@ -12,13 +12,16 @@ import {Component, Output, EventEmitter,
 import {ContactItemComponent} from "../contact-item/contact-item.component";
 import {NotificationApi} from "../../../../shared/services/src/notification-api.service";
 import {Notification} from "../../../../shared/models/Notification";
+import {CardComponent} from "../../card/card.component";
 
 @Component({
     selector: 'contact-list',
     moduleId: module.id,
     templateUrl: 'contact-list.component.html',
     styleUrls : ['./contact-list.component.css'],
-    directives: [ContactItemComponent],
+    directives: [ContactItemComponent,
+        CardComponent
+    ],
     providers: [NotificationApi],
     animations: [
         trigger('flyInOut', [
@@ -50,12 +53,14 @@ import {Notification} from "../../../../shared/models/Notification";
 export class ContactListComponent {
 
     private notifications:Array<Notification>;
+    private showNotification:boolean;
     private pathImage:string;
 
 
     @Output() sendContact= new EventEmitter<Notification>();
 
     constructor(private notificationService:NotificationApi){
+        this.showNotification=false;
         this.notifications=[];
         this.pathImage="../../../../../assets/notification/logo2.png";
         //this.contactList=[new ContactModelComponent("-1", "Pierre", "Marcousi", "Je te dirai ça demain")];
@@ -66,7 +71,12 @@ export class ContactListComponent {
     }
 
     emitContact(notifications:Notification){
-        this.sendContact.emit(contact);
+        this.showNotification=true;
+    }
+
+    showNotifList(){
+
+        this.showNotification=false;
     }
 
     getNotifications(){
