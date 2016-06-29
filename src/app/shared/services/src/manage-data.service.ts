@@ -1,9 +1,9 @@
 /**
  * Service ManageDataService
  */
-import {Injectable} from '@angular/core';
-import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@angular/http';
-import {Metric} from "../../models/metric";
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import {Metric} from "../../models/index";
 
 
 @Injectable()
@@ -13,12 +13,12 @@ export class ManageDataService {
     private _serverLink ='http://gardencaring-services.eu-gb.mybluemix.net/rest/data?form=1467133789089?serial=AE0X1234';
 
     private extensionLink: string[];
-
     /**
      * Constructor
      * @param http
      */
-    constructor(private http:Http) {}
+    constructor(private http:Http) {
+    }
 
     /**
      * Function getNews. This function makes a get HTTP request to the server
@@ -27,11 +27,11 @@ export class ManageDataService {
     getData() {
         return this.http.get(this._serverLink)
             .toPromise()
-            .then( res =>  <Metric[]> res.json() )
+            .then(res => <Metric[]> res.json())
             .catch(this.handleError);
     }
 
-    handleError(){
+    handleError() {
 
     }
 

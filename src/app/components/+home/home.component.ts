@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {NotificationApi, AccountApi, LandApi} from "../../shared/services/src/notif/index";
-import {Notification, Account, Plot} from "../../shared/services/src/notif/model/models";
+import {NotificationApi, AccountApi, LandApi} from "../../shared/services/src/index";
+import {Notification, Account, Plot} from "../../shared/models/index";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {ManageDataService} from "../../shared/services/src/manage-data.service";

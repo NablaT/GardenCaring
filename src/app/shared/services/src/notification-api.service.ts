@@ -22,11 +22,20 @@
  * limitations under the License.
  */
 
-import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@angular/http';
-import {Injectable, Optional} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import * as models from '../model/models';
-import 'rxjs/Rx';
+import {
+    Http,
+    Headers,
+    RequestOptionsArgs,
+    Response,
+    URLSearchParams
+} from "@angular/http";
+import {
+    Injectable,
+    Optional
+} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {Notification} from "../../models/index";
+import "rxjs/Rx";
 
 /* tslint:disable:no-unused-variable member-ordering */
 
@@ -36,10 +45,10 @@ import 'rxjs/Rx';
 export class NotificationApi {
     protected basePath = 'http://gardencaring-services.eu-gb.mybluemix.net/rest';
     //public defaultHeaders : Headers = new Headers({'Content-Type': 'text/plain; application/x-www-form-urlencoded; multipart/form-data'});
-   // public defaultHeaders : Headers = new Headers({'Access-Control-Allow-Origin': "http://localhost:3000"});
-    public defaultHeaders : Headers = new Headers();
+    // public defaultHeaders : Headers = new Headers({'Access-Control-Allow-Origin': "http://localhost:3000"});
+    public defaultHeaders:Headers = new Headers();
 
-    constructor(protected http: Http, @Optional() basePath: string) {
+    constructor(protected http:Http, @Optional() basePath:string) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -47,27 +56,27 @@ export class NotificationApi {
 
     /**
      * Find account using an id.
-     * 
+     *
      * @param notificationid Notificationid
      */
-    public findAccount (notificationid: string, extraHttpRequestParams?: any ) : Observable<models.Notification> {
+    public findAccount(notificationid:string, extraHttpRequestParams?:any):Observable<Notification> {
         const path = this.basePath + '/notification/{notificationid}'
-            .replace('{' + 'notificationid' + '}', String(notificationid));
+                .replace('{' + 'notificationid' + '}', String(notificationid));
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'notificationid' is set
         if (!notificationid) {
             throw new Error('Missing required parameter notificationid when calling findAccount');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -78,15 +87,15 @@ export class NotificationApi {
 
     /**
      * List notification
-     * 
+     *
      * @param accountid accoundid
      * @param plotid accountid
      */
-    public listAccount (accountid?: string, plotid?: string, extraHttpRequestParams?: any ) : Observable<Array<models.Notification>> {
+    public listAccount(accountid?:string, plotid?:string, extraHttpRequestParams?:any):Observable<Array<Notification>> {
         const path = this.basePath + '/notification';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         if (accountid !== undefined) {
             queryParameters.set('accountid', accountid);
         }
@@ -95,14 +104,14 @@ export class NotificationApi {
             queryParameters.set('plotid', plotid);
         }
 
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {

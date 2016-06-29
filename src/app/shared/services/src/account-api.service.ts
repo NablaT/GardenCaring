@@ -22,11 +22,20 @@
  * limitations under the License.
  */
 
-import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@angular/http';
-import {Injectable, Optional} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import * as models from '../model/models';
-import 'rxjs/Rx';
+import {
+    Http,
+    Headers,
+    RequestOptionsArgs,
+    Response,
+    URLSearchParams
+} from "@angular/http";
+import {
+    Injectable,
+    Optional
+} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {Account} from "../../models/index";
+import "rxjs/Rx";
 
 /* tslint:disable:no-unused-variable member-ordering */
 
@@ -34,10 +43,10 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class AccountApi {
-    protected basePath = 'http://gardencaring-services.eu-gb.mybluemix.net/rest';
-    public defaultHeaders : Headers = new Headers();
+    protected basePath            = 'http://gardencaring-services.eu-gb.mybluemix.net/rest';
+    public defaultHeaders:Headers = new Headers();
 
-    constructor(protected http: Http, @Optional() basePath: string) {
+    constructor(protected http:Http, @Optional() basePath:string) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -45,27 +54,27 @@ export class AccountApi {
 
     /**
      * Create a account.
-     * 
+     *
      * @param body Account to create
      */
-    public createPlot (body: models.Account, extraHttpRequestParams?: any ) : Observable<models.Account> {
+    public createPlot(body:Account, extraHttpRequestParams?:any):Observable<Account> {
         const path = this.basePath + '/account';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'body' is set
         if (!body) {
             throw new Error('Missing required parameter body when calling createPlot');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'POST',
             headers: headerParams,
             search: queryParameters
         };
-        requestOptions.body = JSON.stringify(body);
+        requestOptions.body                   = JSON.stringify(body);
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -76,27 +85,27 @@ export class AccountApi {
 
     /**
      * Find account using an id.
-     * 
+     *
      * @param accountid accountid
      */
-    public findAccountById (accountid: string, extraHttpRequestParams?: any ) : Observable<models.Account> {
+    public findAccountById(accountid:string, extraHttpRequestParams?:any):Observable<Account> {
         const path = this.basePath + '/account/{accountid}'
-            .replace('{' + 'accountid' + '}', String(accountid));
+                .replace('{' + 'accountid' + '}', String(accountid));
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'accountid' is set
         if (!accountid) {
             throw new Error('Missing required parameter accountid when calling findAccountById');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -107,21 +116,21 @@ export class AccountApi {
 
     /**
      * List accounts
-     * 
+     *
      */
-    public listAccount (extraHttpRequestParams?: any ) : Observable<Array<models.Account>> {
+    public listAccount(extraHttpRequestParams?:any):Observable<Array<Account>> {
         const path = this.basePath + '/account';
 
-        let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
-        let requestOptions: RequestOptionsArgs = {
+        let queryParameters                   = new URLSearchParams();
+        let headerParams                      = this.defaultHeaders;
+        let requestOptions:RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
             search: queryParameters
         };
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
@@ -132,27 +141,27 @@ export class AccountApi {
 
     /**
      * Update a account.
-     * 
+     *
      * @param body Plot to update
      */
-    public updatePlot (body: models.Account, extraHttpRequestParams?: any ) : Observable<models.Account> {
+    public updatePlot(body:Account, extraHttpRequestParams?:any):Observable<Account> {
         const path = this.basePath + '/account';
 
         let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
+        let headerParams    = this.defaultHeaders;
         // verify required parameter 'body' is set
         if (!body) {
             throw new Error('Missing required parameter body when calling updatePlot');
         }
-        let requestOptions: RequestOptionsArgs = {
+        let requestOptions:RequestOptionsArgs = {
             method: 'PUT',
             headers: headerParams,
             search: queryParameters
         };
-        requestOptions.body = JSON.stringify(body);
+        requestOptions.body                   = JSON.stringify(body);
 
         return this.http.request(path, requestOptions)
-            .map((response: Response) => {
+            .map((response:Response) => {
                 if (response.status === 204) {
                     return undefined;
                 } else {
