@@ -25,6 +25,10 @@ export class HomeComponent {
 
     @Output() closeComponent=new EventEmitter<boolean>();
 
+    public day:number;
+    public week:number;
+    public month:number;
+
     public data:Metric[];
     public loading:boolean;
 
@@ -124,6 +128,9 @@ export class HomeComponent {
         this.loading=true;
         this.pathImage = "../../../../assets/home/picture.png";
         this.plotName="";
+        this.day=40;
+        this.week=80;
+        this.month=150;
     }
 
     ngOnInit() {
@@ -138,7 +145,7 @@ export class HomeComponent {
             plots=>this.plots = plots
         );*/
         this.manageMetricService.getDataFromId(this.sensorSerial).then(
-            data => this.changeCharts(data,100)
+            data => this.changeCharts(data,this.day)
         );
     }
 
@@ -194,21 +201,21 @@ export class HomeComponent {
     public lastDay(){
         this.loading=true;
         this.manageMetricService.getData().then(
-            data => this.changeCharts(data, 10)
+            data => this.changeCharts(data, this.day)
         );
     }
 
     public lastWeek(){
         this.loading=true;
         this.manageMetricService.getData().then(
-            data => this.changeCharts(data, 40)
+            data => this.changeCharts(data, this.week)
         );
     }
 
     public lastMonth(){
         this.loading=true;
         this.manageMetricService.getData().then(
-            data => this.changeCharts(data, data.length)
+            data => this.changeCharts(data, this.month)
         );
 
     }

@@ -20,8 +20,9 @@ import {NotificationComponent} from "./components/+notification/notification.com
     ]
 })
 @RouteConfig([
-    {path: '/', name: 'Home', component: HomeComponent},
-    {path: '/about', name: 'About', component: AboutComponent},
+
+    {path: '/', name: 'About', component: AboutComponent},
+    {path: '/home', name: 'Home', component: HomeComponent},
     {path: '/profile', name: 'Profile', component: ProfileComponent},
     {path: '/notification', name: 'Notification', component: NotificationComponent}
 ])
