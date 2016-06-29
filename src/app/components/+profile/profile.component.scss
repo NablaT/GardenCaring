@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+@import "../../../styles/variables";
+
+$workColor: #f39c12;
+$facebookColor: #3B5998;
+$twitterColor: #33ccff;
+$linkBackground: #b0b7bf;
+
+figure {
+
+  position: relative;
+  margin-top: 20px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  width: 100%;
+  color: $menuFontColor;
+  text-align: center;
+
+  .profile {
+    border-radius: 50%;
+    max-width: 200px;
+    opacity: 1;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+
+  figcaption {
+    padding: 15px;
+
+    h3 {
+      font-weight: 400;
+
+      span {
+        display: block;
+        font-size: 0.6em;
+        color: $workColor;
+        opacity: 0.75;
+      }
+    }
+
+    ul {
+      li {
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      a {
+        text-decoration: none;
+        background: $linkBackground;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        color: #fff;
+        text-align: center;
+
+        &.ico-facebook:hover {
+          background-color: $facebookColor;
+          -webkit-transition: all 0.8s;
+          -moz-transition: all 0.8s;
+          -o-transition: all 0.8s;
+          transition: all 0.8s;
+        }
+
+        &.ico-twitter:hover {
+          background-color: $twitterColor;
+          -webkit-transition: all 0.8s;
+          -moz-transition: all 0.8s;
+          -o-transition: all 0.8s;
+          transition: all 0.8s;
+        }
+
+        &:hover {
+          i {
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            -webkit-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            transition: all 0.4s;
+          }
+
+          .fa {
+            color: $menuFontColor;
+          }
+        }
+
+        .fa {
+          font-size: 20px;
+          padding-top: 8px;
+        }
+
+        i {
+          padding: 10px 5px;
+          display: inline-block;
+          font-size: 32px;
+          color: $menuFontColor;
+          text-align: center;
+        }
+      }
+
+    }
+  }
+}
