@@ -19,7 +19,7 @@
 <div *ngIf="showNotification==true" @flyInOut="'in'">
     <card
             path="{{pathCardImage}}"
-            content="Here the notif title"
+            content="{{notification.content}}"
             description="Here the notif description"
             (click)="showNotifList()"
 
