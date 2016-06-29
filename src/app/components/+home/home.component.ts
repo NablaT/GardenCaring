@@ -172,6 +172,19 @@ export class HomeComponent {
         this.lineChartLabels=yNames;
     }
 
+    public lastDay(){
+        console.log("yes");
+    }
+
+    public lastWeek(){
+        console.log("week");
+    }
+
+    public lastMonth(){
+        console.log("month");
+
+    }
+
     // events
     public chartClicked(e:any):void {
         //console.log(e);
