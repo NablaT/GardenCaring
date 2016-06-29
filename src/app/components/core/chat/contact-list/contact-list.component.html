@@ -1,8 +1,11 @@
 <ul class="contacts">
-    <li *ngFor="let contact of contactList" class="contact"
-        (click)="emitContact(contact)">
+    <li *ngFor="let notification of notifications" class="contact"
+        (click)="emitContact(notification)">
         <contact-item
-                id="{{contact.id}}"
+                id="{{notification.id}}"
+                content="{{notification.content}}"
+                seen="{{notification.seen}}"
+                pathImage="{{pathImage}}"
 
         >
         </contact-item>

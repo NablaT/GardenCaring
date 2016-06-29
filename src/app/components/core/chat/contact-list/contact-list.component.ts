@@ -3,9 +3,9 @@
  */
 
 import {Component, Output, EventEmitter} from '@angular/core';
-import {ContactModel} from '../../../models/contact-model/contact.model';
 import {ContactItemComponent} from "../contact-item/contact-item.component";
-import {ManageChatService} from "../../../../shared/services/src/manage-chat.service";
+import {NotificationApi} from "../../../../shared/services/src/notification-api.service";
+import {Notification} from "../../../../shared/models/Notification";
 
 @Component({
     selector: 'contact-list',
@@ -13,27 +13,33 @@ import {ManageChatService} from "../../../../shared/services/src/manage-chat.ser
     templateUrl: 'contact-list.component.html',
     styleUrls : ['./contact-list.component.css'],
     directives: [ContactItemComponent],
-    providers: [ManageChatService]
+    providers: [NotificationApi]
 })
 export class ContactListComponent {
 
-    private contactList:ContactModel[];
+    private notifications:Array<Notification>;
+    private pathImage:string;
 
 
-    @Output() sendContact= new EventEmitter<ContactModel>();
+    @Output() sendContact= new EventEmitter<Notification>();
 
-    constructor(private _manageChatService:ManageChatService){
-        this.getContacts();
+    constructor(private notificationService:NotificationApi){
+        this.notifications=[];
+        this.pathImage="../../../../../assets/notification/logo2.png";
         //this.contactList=[new ContactModelComponent("-1", "Pierre", "Marcousi", "Je te dirai ça demain")];
     }
 
-    emitContact(contact:ContactModel){
+    ngOnInit(){
+        this.getNotifications();
+    }
+
+    emitContact(notifications:Notification){
         this.sendContact.emit(contact);
     }
 
-    getContacts(){
-        this._manageChatService.getContacts().then(
-            contacts => this.contactList=contacts
-        )
+    getNotifications(){
+        this.notificationService.listAccount().subscribe(
+            notifications=>this.notifications = notifications
+        );
     }
 }
