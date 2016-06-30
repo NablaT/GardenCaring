@@ -14,7 +14,6 @@ import {NotificationApi} from "../../../../shared/services/src/notification-api.
 import {Notification} from "../../../../shared/models/Notification";
 import {CardComponent} from "../../card/card.component";
 import {Plot} from "../../../../shared/models/Plot";
-import {ManageDataService} from "../../../../../../dist/template/app/shared/services/src/manage-data.service";
 import {LandApi} from "../../../../shared/services/src/land-api.service";
 
 @Component({
@@ -84,7 +83,6 @@ export class ContactListComponent {
                 break;
             }
         }
-        console.log("Current plot: "+this.currentPlot.name);
         notification.showDescription=true;
     }
 
