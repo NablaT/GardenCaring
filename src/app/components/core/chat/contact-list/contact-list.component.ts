@@ -62,18 +62,28 @@ export class ContactListComponent {
         this.getNotifications();
     }
 
-    emitContact(notifications:Notification){
-        this.showNotification=true;
+    emitContact(notification:Notification){
+        notification.showDescription=true;
+
     }
 
-    showNotifList(){
+    showNotifList(notification:Notification){
 
-        this.showNotification=false;
+        notification.showDescription=false;
     }
 
     getNotifications(){
         this.notificationService.listAccount().subscribe(
-            notifications=>this.notifications = notifications
+            notifications=> this.initialiseNotif(notifications)
         );
+    }
+
+    initialiseNotif(notifications:Array<Notification>){
+        for(let i=0;i<notifications.length;i++){
+            notifications[i].showDescription=false;
+        }
+        this.notifications = notifications
+
+
     }
 }

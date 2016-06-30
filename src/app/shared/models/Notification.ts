@@ -11,4 +11,6 @@ export class Notification {
     content:string;
 
     getRev:string;
+
+    showDescription:boolean;
 }

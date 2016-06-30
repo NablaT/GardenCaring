@@ -29,7 +29,6 @@
       margin-left: -1px;
       padding-top: 13px;
       border: 0;
-      background-color: $blue;
       @include calc(width, '100% + 2px');
       @include calc(padding-left, '10% + 1px');
       /deep/ span {

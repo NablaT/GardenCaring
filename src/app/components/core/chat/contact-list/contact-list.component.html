@@ -1,4 +1,4 @@
-<div *ngIf="showNotification==false">
+<!--<div *ngIf="showNotification==false">
     <ul class="contacts">
         <li *ngFor="let notification of notifications" class="contact"
             (click)="emitContact(notification)" @flyInOut="'in'">
@@ -24,4 +24,34 @@
             (click)="showNotifList()"
 
     ></card>
+</div>-->
+
+<div >
+    <ul class="contacts">
+        <li *ngFor="let notification of notifications" class="contact"
+            >
+            <div *ngIf="notification.showDescription==false" (click)="emitContact(notification)" @flyInOut="'in'">
+                <div class="row">
+                    <contact-item
+                            id="{{notification.id}}"
+                            content="{{notification.content}}"
+                            seen="{{notification.seen}}"
+                            pathImage="{{pathImage}}"
+
+                    >
+                    </contact-item>
+                </div>
+            </div>
+            <div *ngIf="notification.showDescription==true" @flyInOut="'in'">
+                <card
+                        path="{{pathCardImage}}"
+                        content="The content"
+                        description="Here the notif description"
+                        (click)="showNotifList(notification)"
+
+                ></card>
+            </div>
+
+        </li>
+    </ul>
 </div>
