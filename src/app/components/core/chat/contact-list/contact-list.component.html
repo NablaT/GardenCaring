@@ -44,9 +44,9 @@
             </div>
             <div *ngIf="notification.showDescription==true" @flyInOut="'in'">
                 <card
-                        path="{{pathCardImage}}"
-                        content="The content"
-                        description="Here the notif description"
+                        path="{{currentPlot.imageUrl}}"
+                        content="{{currentPlot.name}}"
+                        description="{{notification.content}}"
                         (click)="showNotifList(notification)"
 
                 ></card>

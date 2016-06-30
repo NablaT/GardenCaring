@@ -13,6 +13,9 @@ import {ContactItemComponent} from "../contact-item/contact-item.component";
 import {NotificationApi} from "../../../../shared/services/src/notification-api.service";
 import {Notification} from "../../../../shared/models/Notification";
 import {CardComponent} from "../../card/card.component";
+import {Plot} from "../../../../shared/models/Plot";
+import {ManageDataService} from "../../../../../../dist/template/app/shared/services/src/manage-data.service";
+import {LandApi} from "../../../../shared/services/src/land-api.service";
 
 @Component({
     selector: 'contact-list',
@@ -22,7 +25,7 @@ import {CardComponent} from "../../card/card.component";
     directives: [ContactItemComponent,
         CardComponent
     ],
-    providers: [NotificationApi],
+    providers: [NotificationApi, LandApi],
     animations: [
         trigger('flyInOut', [
             state('in', style({ transform: 'translateX(0)', opacity: 1})),
@@ -47,14 +50,20 @@ export class ContactListComponent {
     private pathImage:string;
     private pathCardImage:string;
 
+    private currentPlot:Plot;
+
 
     @Output() sendContact= new EventEmitter<Notification>();
 
-    constructor(private notificationService:NotificationApi){
+    constructor(private notificationService:NotificationApi,
+            private plotService:LandApi
+
+        ){
         this.showNotification=false;
         this.notifications=[];
         this.pathImage="../../../../../assets/notification/logo2.png";
         this.pathCardImage="../../../../../assets/card/potager.png";
+        this.currentPlot=new Plot();
         //this.contactList=[new ContactModelComponent("-1", "Pierre", "Marcousi", "Je te dirai ça demain")];
     }
 
@@ -63,8 +72,20 @@ export class ContactListComponent {
     }
 
     emitContact(notification:Notification){
-        notification.showDescription=true;
+        this.plotService.findPlots().subscribe(
+            plots=>this.getPlotInfo(plots, notification)
+        );
+    }
 
+    getPlotInfo(plotList:Array<Plot>, notification:Notification){
+        for(let i=0;i<plotList.length;i++){
+            if(plotList[i].id===notification.plotId){
+                this.currentPlot=plotList[i];
+                break;
+            }
+        }
+        console.log("Current plot: "+this.currentPlot.name);
+        notification.showDescription=true;
     }
 
     showNotifList(notification:Notification){
