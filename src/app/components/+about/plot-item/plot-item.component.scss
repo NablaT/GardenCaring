@@ -31,6 +31,7 @@ html,body { // for demo only
   }
   .image {
     position: relative;
+    max-width: 100%;
     .title {
       position: absolute;
       bottom: 0;
@@ -41,7 +42,9 @@ html,body { // for demo only
     }
     img {
       border-radius: 2px 2px 0 0;
-      width:100%;
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
   }
 }
