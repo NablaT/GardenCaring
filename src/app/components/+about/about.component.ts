@@ -40,8 +40,6 @@ export class AboutComponent {
     }
 
     public showGraphFromPlot(currPlot:Plot){
-        console.log("into show graph, plot: name: "+currPlot.name);
-        console.log("plot: sensorSerial: "+currPlot.sensorSerial);
         this.currentSensorSerial=currPlot.sensorSerial;
         this.currentPlotName=currPlot.name;
         this.showGraph=true;

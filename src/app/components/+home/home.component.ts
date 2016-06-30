@@ -146,9 +146,15 @@ export class HomeComponent {
         if (dataSet > data.length) {
             dataSet = data.length;
         }
-        this.extractTemperature(data, dataSet);
-        this.extractLight(data, dataSet);
-        this.extractHumidity(data, dataSet);
+        if(data.length>0){
+
+            this.extractTemperature(data, dataSet);
+            this.extractLight(data, dataSet);
+            this.extractHumidity(data, dataSet);
+        }
+        else{
+            this.loading = false;
+        }
     }
 
     public extractTemperature(data, dataSet:number) {
@@ -171,9 +177,6 @@ export class HomeComponent {
         }
         this.lineChartDataT = [{data: values, label: 'Temperature | Last value: ' + data[data.length - 1].temperature}];
         this.lineChartLabelsT = yNames;
-        console.log("line chart: "+this.lineChartLabelsT);
-        console.log("line chart length: "+this.lineChartLabelsT.length+" data length:"+values.length);
-        console.log("timestamp: " + data[data.length - 1].timestamp);
         this.lastTemperature = data[data.length - 1].temperature;
         this.loading = false;
     }
